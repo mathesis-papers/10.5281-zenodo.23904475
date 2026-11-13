@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "statement": "Finite exact checks of the Bellman optimum, every greedy tie continuation, the variation formula, and every first-merge slack.",
+  "arithmetic": "integer and fractions.Fraction throughout",
+  "suites": [
+    {
+      "name": "integer ties",
+      "alphabet": [
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "maximum_length": 8,
+      "vectors": 87381,
+      "first_merge_transitions": 582544,
+      "status": "pass"
+    },
+    {
+      "name": "rational ready times",
+      "alphabet": [
+        "0",
+        "1/3",
+        "1/2",
+        "2"
+      ],
+      "maximum_length": 6,
+      "vectors": 5461,
+      "first_merge_transitions": 25488,
+      "status": "pass"
+    },
+    {
+      "name": "eight distinct readiness ranks",
+      "vectors": 40320,
+      "first_merge_transitions": 282240,
+      "status": "pass"
+    }
+  ],
+  "geometric_mean": {
+    "status": "pass",
+    "exact_rational_comparisons": 18,
+    "tail_terms": 80,
+    "values": [
+      {
+        "length": 1,
+        "p": "1/3",
+        "expected_cost": "0"
+      },
+      {
+        "length": 1,
+        "p": "1/2",
+        "expected_cost": "0"
+      },
+      {
+        "length": 1,
+        "p": "1",
+        "expected_cost": "0"
+      },
+      {
+        "length": 2,
+        "p": "1/3",
+        "expected_cost": "12/5"
+      },
+      {
+        "length": 2,
+        "p": "1/2",
+        "expected_cost": "4/3"
+      },
+      {
+        "length": 2,
+        "p": "1",
+        "expected_cost": "0"
+      },
+      {
+        "length": 3,
+        "p": "1/3",
+        "expected_cost": "84/19"
+      },
+      {
+        "length": 3,
+        "p": "1/2",
+        "expected_cost": "52/21"
+      },
+      {
+        "length": 3,
+        "p": "1",
+        "expected_cost": "0"
+      },
+      {
+        "length": 4,
+        "p": "1/3",
+        "expected_cost": "7704/1235"
+      },
+      {
+        "length": 4,
+        "p": "1/2",
+        "expected_cost": "368/105"
+      },
+      {
+        "length": 4,
+        "p": "1",
+        "expected_cost": "0"
+      },
+      {
+        "length": 5,
+        "p": "1/3",
+        "expected_cost": "2066808/260585"
+      },
+      {
+        "length": 5,
+        "p": "1/2",
+        "expected_cost": "968/217"
+      },
+      {
+        "length": 5,
+        "p": "1",
+        "expected_cost": "0"
+      },
+      {
+        "length": 6,
+        "p": "1/3",
+        "expected_cost": "17406348/1824095"
+      },
+      {
+        "length": 6,
+        "p": "1/2",
+        "expected_cost": "10484/1953"
+      },
+      {
+        "length": 6,
+        "p": "1",
+        "expected_cost": "0"
+      }
+    ]
+  },
+  "non_greedy_optimal_example": {
+    "ready_times": [
+      1,
+      2,
+      4,
+      3
+    ],
+    "first_pair_zero_based": 2,
+    "cost": 4
+  },
+  "coverage": "The general real-time theorem and its probabilistic corollaries are established by the written proofs in note.pdf. These enumerations check the listed finite domains."
+}

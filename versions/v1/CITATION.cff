@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this work, cite it."
+title: "Earliest swapping for every chain length: Kamin et al. (2023), Section IV D 1, Eq. (41)"
+authors:
+  - name: "Haobo Ma"
+  - name: "Wenlin Zhang"
+date-released: "2026-11-05"
+version: "1"
+url: "https://mathesis-omega-research.apps.chrono-ai.fun/papers/kamin-shchukin-schmidt-van-loock-2023-swap-earliest-dephasing?version=1"
+doi: "10.5281/zenodo.23904476"
+license: "CC-BY-4.0"

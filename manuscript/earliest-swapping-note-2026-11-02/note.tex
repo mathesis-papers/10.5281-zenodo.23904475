@@ -1,0 +1,282 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=27mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,booktabs,array}
+\usepackage{xurl}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\R}{\mathbb R}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Dstar}{D^{\star}}
+\title{Earliest swapping for every chain length:\\
+Kamin et al. (2023), Section IV D 1, Eq. (41)}
+\author{Haobo Ma\\\small ChronoAI Pte Ltd, Singapore
+\and Wenlin Zhang\\\small National University of Singapore\\
+\small ChronoAI Pte Ltd, Singapore}
+\date{November 2, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+The all-length earliest-swapping conjecture in Section IV D 1, Eq.~(41),
+of Kamin, Shchukin, Schmidt and van Loock (2023) states that repeatedly
+merging an adjacent pair with smallest maximum ready time minimizes total
+dephasing. We give a self-contained potential proof for arbitrary
+nonnegative real ready times and every tie choice. The optimum is the
+largest ready time plus the sum of adjacent maxima minus the sum of ready
+times. An exact nonnegative slack formula characterizes all optimal
+histories. The pathwise inequality also answers the exponential-dephasing
+question in Section IV D 5, for the same fixed-readiness swapping model:
+earliest swapping simultaneously minimizes expected dephasing and maximizes
+every expected exponential attenuation factor.
+\end{abstract}
+
+\section{The conjecture and its model}
+For parallel entanglement distribution with deterministic instantaneous
+swaps, Kamin et al.~\cite[Sec.~IV D 1, Eq.~(41), p.~023086-13]{kamin}
+ask whether earliest adjacent-pair swapping minimizes dephasing for every
+chain length. Their Eqs.~(38)--(39) define the greedy and optimal costs;
+they verify equality for lengths up to eight. The natural-number result
+has the pinned formal source~\cite{lean}. We give its potential argument
+in real variables, and derive the exact slack and probabilistic
+consequences. The lower bound is preserved by every greedy step.
+
+Let $x=(x_1,\ldots,x_n)$, $n\geq1$, be nonnegative real ready times.
+A merge at $i\in\{1,\ldots,n-1\}$ costs
+$c_i(x)=|x_i-x_{i+1}|$ and replaces the adjacent entries by their maximum:
+\[
+ T_i x=(x_1,\ldots,x_{i-1},\max(x_i,x_{i+1}),x_{i+2},\ldots,x_n).
+\]
+A complete history $H$ has $n-1$ valid merges, and $C_H(x)$ is the sum
+of their costs. Define $\Dstar(x)=\min_H C_H(x)$, with cost zero on a
+singleton. This is exactly the Bellman recurrence in Eq.~(39).
+A greedy history chooses a pair minimizing $\max(x_i,x_{i+1})$ at each
+stage, with arbitrary choices among ties, as in Eq.~(38).
+
+The readiness vector is fixed while histories are compared. The claim is
+about this recurrence, rather than an optimization over distribution
+schedules, memory cutoffs, or probabilistic swapping.
+
+\section{A potential and an exact slack formula}
+Write $M(x)=\max_j x_j$ and set
+\begin{equation}\label{eq:potential}
+ P(x)=M(x)+\sum_{j=1}^{n-1}\max(x_j,x_{j+1})-\sum_{j=1}^n x_j.
+\end{equation}
+For a singleton, $P=0$. The identity
+$2\max(u,v)=u+v+|u-v|$ gives the equivalent expression
+\begin{equation}\label{eq:variation}
+ 2P(x)=2M(x)-x_1-x_n+\sum_{j=1}^{n-1}|x_j-x_{j+1}|.
+\end{equation}
+In particular, $P(x)\geq0$.
+
+\begin{theorem}\label{thm:main}
+For every $n\geq1$ and $x\in\R_{\geq0}^n$,
+\[
+ \Dstar(x)=P(x).
+\]
+Every complete greedy history attains this value, independently of all
+tie choices. More generally, if $x^{(0)}=x$ and
+$x^{(s+1)}=T_{i_s}x^{(s)}$ describe any complete history, then
+\begin{equation}\label{eq:regret}
+ C_H(x)-P(x)=\sum_{s=0}^{n-2}\delta_{i_s}(x^{(s)}),
+ \qquad \delta_i(x)\geq0,
+\end{equation}
+where, writing $a=x_i$, $b=x_{i+1}$ and $m=\max(a,b)$,
+\begin{align}\label{eq:slack}
+\delta_i(x)={}&
+\begin{cases}
+ \max(x_{i-1},m)-\max(x_{i-1},a),& i>1,\\
+ 0,&i=1
+\end{cases}\notag\\
+&+\begin{cases}
+ \max(m,x_{i+2})-\max(b,x_{i+2}),&i+1<n,\\
+ 0,&i+1=n.
+\end{cases}
+\end{align}
+Consequently, a history is optimal if and only if every one of its
+merge slacks vanishes.
+\end{theorem}
+
+\begin{proof}
+A merge preserves the global maximum. In the adjacent-maxima sum, it
+removes the term $m$, changes the left neighboring term from
+$\max(x_{i-1},a)$ to $\max(x_{i-1},m)$ when present, and changes the right
+neighboring term from $\max(b,x_{i+2})$ to $\max(m,x_{i+2})$ when present.
+The sum of entries changes by $m-a-b$. Hence
+\[
+ P(T_i x)-P(x)=\delta_i(x)+a+b-2m
+             =\delta_i(x)-|a-b|.
+\]
+This proves $c_i(x)+P(T_i x)-P(x)=\delta_i(x)$, including merges
+at either end of the list. Both summands in \eqref{eq:slack} are
+nonnegative because $m\geq a,b$.
+
+If $i$ is greedy and the left neighbor exists, then
+$m\leq\max(x_{i-1},a)$ by comparison with the adjacent pair $(i-1,i)$.
+It follows that
+$\max(x_{i-1},m)=\max(x_{i-1},a)$.
+The right comparison gives
+$\max(m,x_{i+2})=\max(b,x_{i+2})$ when that neighbor exists.
+Thus every greedy step has zero slack. These arguments use weak
+inequalities, so ties cause no exception.
+
+Summing the one-step identity over a complete history telescopes the
+potential to its singleton value zero, proving \eqref{eq:regret}.
+It follows that every history costs at least $P(x)$, while any greedy
+history costs exactly $P(x)$. A greedy pair always exists in a finite
+non-singleton list, and each merge decreases its length by one, so such a
+complete history exists. This proves the optimum formula. Since a finite
+sum of nonnegative numbers is zero exactly when all its summands are
+zero, it also proves the last assertion.
+\end{proof}
+
+Greediness is sufficient but not necessary for optimality. For
+$x=(1,2,4,3)$, merging the last pair first is not greedy, but costs
+$1+\Dstar(1,2,4)=1+3=4=P(x)$. For monotone ready times,
+\eqref{eq:variation} reduces to $P(x)=\max_jx_j-\min_jx_j$, recovering
+the observation following Eq.~(40) of~\cite{kamin} for every length.
+
+Greedy histories are also chronological: after a merge with maximum $m$,
+all unchanged adjacent-pair maxima are at least $m$ by greediness, and
+every newly formed adjacent pair contains the entry $m$. The next merge
+time is therefore at least $m$. A merged block is ready at the maximum
+of its elementary ready times, by induction. Thus these histories respect
+readiness, including consecutive instantaneous swaps at a tied time.
+
+Goodenough, Coopmans and Towsley~\cite[Sec.~3.1]{goodenough} express
+swap-ASAP memory noise through the roughness
+$\sum_j|x_j-x_{j+1}|$ and the endpoint waiting contribution
+$2M(x)-x_1-x_n$. Their combined exponent is exactly $2P(x)$ by
+\eqref{eq:variation}. The factor of two records the conversion to the
+normalization of Eqs.~(38)--(39); the roughness alone is a different
+objective. The potential proof above establishes optimality against
+every history in those recurrences.
+
+\section{Probabilistic consequences and source coverage}
+\begin{corollary}\label{cor:attenuation}
+Let $X$ have any joint distribution on $\R_{\geq0}^n$. Compare histories
+using the same realized readiness vector, and allow a competing policy
+to use additional randomness. For every $\alpha\geq0$,
+\[
+ C_{\mathrm{greedy}}(X)=P(X)\leq C_H(X),\qquad
+ \E e^{-\alpha C_{\mathrm{greedy}}(X)}
+ \geq\E e^{-\alpha C_H(X)}.
+\]
+Whenever the costs are integrable, greedy histories also minimize
+their expectation.
+\end{corollary}
+\begin{proof}
+Theorem~\ref{thm:main} applies to every realization and every history.
+Apply the decreasing function $t\mapsto e^{-\alpha t}$ and then take
+expectations. These exponential variables lie in $[0,1]$, so no moment
+condition is needed. Taking expectations directly gives the cost
+comparison when integrable.
+\end{proof}
+
+This answers the question about minimizing $\E D$ versus maximizing
+$\E e^{-\alpha D}$ raised in Section IV D 5 of~\cite[p.~023086-16]{kamin},
+within the parallel-distribution recurrence: the stronger, pointwise
+inequality supplies both conclusions. No independence or identical
+distribution assumption is needed.
+
+\begin{corollary}\label{cor:mean}
+If $X_1,\ldots,X_n$ are independent geometric random variables on
+$\{1,2,\ldots\}$ with success probability $p\in(0,1]$ and $q=1-p$, then
+\begin{equation}\label{eq:mean}
+ \E\Dstar(X)=
+ \sum_{j=1}^{n}\frac{(-1)^{j+1}\binom nj}{1-q^j}
+ +\frac{n-2}{p}-\frac{n-1}{p(2-p)}.
+\end{equation}
+\end{corollary}
+\begin{proof}
+The tail-sum formula and the binomial theorem give
+\[
+ \E M(X)=\sum_{k=0}^{\infty}\bigl[1-(1-q^k)^n\bigr]
+ =\sum_{j=1}^n\frac{(-1)^{j+1}\binom nj}{1-q^j}.
+\]
+Only finitely many $j$ occur, and each geometric series converges.
+For two independent coordinates,
+$\E\min(X_1,X_2)=\sum_{k\geq0}q^{2k}=1/[p(2-p)]$ and
+$\E\max(X_1,X_2)=2/p-1/[p(2-p)]$.
+Take expectations in \eqref{eq:potential} and substitute these
+identities. This gives \eqref{eq:mean}, including $n=1$ and $p=1$.
+\end{proof}
+
+\begin{center}
+\small
+\begin{tabular}{@{}p{0.40\linewidth}p{0.54\linewidth}@{}}
+\toprule
+Source item in Kamin et al. (2023)&Coverage\\
+\midrule
+Sec.~IV D 1, Eq.~(41), all lengths and arbitrary ties &
+Theorem~\ref{thm:main}; nonnegative real times included.\\[3pt]
+Sec.~IV D 1, observation after Eq.~(40)&
+Monotone-time formula from \eqref{eq:variation}.\\[3pt]
+Sec.~IV D 5, p.~023086-16: mean dephasing versus exponential attenuation&
+Corollary~\ref{cor:attenuation}, for the fixed-readiness recurrence.\\[3pt]
+Sec.~IV D 5 and App.~E 6: optimal secret-key rate across distribution and measurement schemes&
+Not implied by the recurrence: those comparisons change the readiness law,
+storage convention, or rate objective.\\[3pt]
+Memory-cutoff and probabilistic-swapping extensions&
+Outside the deterministic, fixed-readiness model of Theorem~\ref{thm:main}.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Formal statement and reproducible finite checks}
+The pinned Lean source~\cite{lean} contains the declaration
+\nolinkurl{D5.S3.Quantum.Optimization.SwapEarliestDephasingOptimality.result}.
+It proves the natural-number statement: every complete history satisfying
+\texttt{IsGreedyRun} has \texttt{runCost = dstar}, where \texttt{dstar}
+implements Eq.~(39) by length-many Bellman iterations. Empty and singleton
+lists have cost zero. The source's private lemmas
+\texttt{dstar\_potential} and \texttt{greedy\_cost\_potential} identify
+both costs with the integer-valued potential corresponding to
+\eqref{eq:potential}. The direct file link is
+\href{https://github.com/the-omega-institute/trureturing/blob/83b70a1d0d6a58bb32521c741805d845d401c5f8/D5/S3/Quantum/Optimization/SwapEarliestDephasingOptimality.lean}{\texttt{SwapEarliestDephasingOptimality.lean}}, at commit
+\nolinkurl{83b70a1d0d6a58bb32521c741805d845d401c5f8}.
+The real-time extension, exact slack characterization, and probabilistic
+corollaries have the written proofs given above.
+
+The accompanying standard-library Python program \texttt{verify.py}
+compares an exhaustive Bellman recursion with the smallest and largest
+costs among all greedy tie continuations. It checks every vector over
+$\{0,1,2,3\}$ through length eight, every vector over
+$\{0,\tfrac13,\tfrac12,2\}$ through length six, and all $8!$ permutations
+of eight distinct readiness ranks. Every valid first merge also satisfies
+the slack identity, its nonnegativity, and the optimal-first-step
+characterization. Additional exact rational comparisons check
+\eqref{eq:mean} for $n=1,\ldots,6$ and $p\in\{\tfrac13,\tfrac12,1\}$
+against tail sums with an explicit geometric remainder bound.
+These finite checks complement the general written proof.
+
+\begin{thebibliography}{9}
+\bibitem{kamin}
+L. Kamin, E. Shchukin, F. Schmidt and P. van Loock,
+\emph{Exact rate analysis for quantum repeaters with imperfect memories
+and entanglement swapping as soon as possible},
+Physical Review Research \textbf{5}, 023086 (2023).
+\href{https://doi.org/10.1103/PhysRevResearch.5.023086}{doi:10.1103/PhysRevResearch.5.023086}.
+\href{https://arxiv.org/abs/2203.10318v1}{arXiv:2203.10318v1} (2022).
+
+\bibitem{goodenough}
+K. Goodenough, T. Coopmans and D. Towsley,
+\emph{On noise in swap ASAP repeater chains: exact analytics,
+distributions and tight approximations},
+Quantum \textbf{9}, 1744 (2025).
+\href{https://doi.org/10.22331/q-2025-05-15-1744}{doi:10.22331/q-2025-05-15-1744}.
+\href{https://arxiv.org/abs/2404.07146v5}{arXiv:2404.07146v5}.
+
+\bibitem{lean}
+\texttt{trureturing} contributors,
+\emph{SwapEarliestDephasingOptimality.lean},
+\texttt{D5/S3/Quantum/Optimization}, commit
+\texttt{83b70a1d0d6a58bb32521c741805d845d401c5f8}.
+\href{https://github.com/the-omega-institute/trureturing/blob/83b70a1d0d6a58bb32521c741805d845d401c5f8/D5/S3/Quantum/Optimization/SwapEarliestDephasingOptimality.lean}{Pinned formal source}.
+\end{thebibliography}
+
+\medskip\noindent
+\textbf{License.} Creative Commons Attribution 4.0 International
+(CC BY 4.0; \texttt{cc-by-4.0}).
+\end{document}
