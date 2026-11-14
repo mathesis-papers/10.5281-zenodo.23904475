@@ -2,12 +2,12 @@
   "schema": "mathesis.materials.v1",
   "work": "kamin-shchukin-schmidt-van-loock-2023-swap-earliest-dephasing",
   "version": 1,
-  "repository_url": "https://github.com/mathesis-papers/6aec38564ddece0d4a9bcb00",
-  "site_url": "https://papers.trureturing.org/6aec38564ddece0d4a9bcb00/",
+  "repository_url": "https://github.com/mathesis-papers/10.5281-zenodo.23904475",
+  "site_url": "https://papers.trureturing.org/10.5281-zenodo.23904475/",
   "doi": "10.5281/zenodo.23904476",
   "reading": {
-    "en": "https://papers.trureturing.org/6aec38564ddece0d4a9bcb00/en/",
-    "zh": "https://papers.trureturing.org/6aec38564ddece0d4a9bcb00/zh/"
+    "en": "https://papers.trureturing.org/10.5281-zenodo.23904475/en/",
+    "zh": "https://papers.trureturing.org/10.5281-zenodo.23904475/zh/"
   },
   "slides": [],
   "visualizations": []
