@@ -1,0 +1,236 @@
+\documentclass{beamer}
+\input{tbook-deck}
+\title{Why earliest swapping is optimal}
+\author{Haobo Ma\inst{1} \and Wenlin Zhang\inst{1,2}}
+\institute{\inst{1}Chrono AI, Singapore\and\inst{2}National University of Singapore, Singapore}
+\date{2026-11-15}
+\begin{document}
+% Manuscript: Section 1; title and source attribution
+\begin{frame}
+\titlepage
+\note{This talk explains version 1 of the note by Haobo Ma and Wenlin Zhang. The question is Eq. (41) in Section IV D 1 of Kamin et al. (2023). We compare deterministic instantaneous adjacent swaps for fixed readiness times.}
+\end{frame}
+% Manuscript: Sections 1–3; argument order
+\begin{frame}{Route}
+\tableofcontents
+\note{Start with waiting times, then state the optimum and explain the one-step identity. Probability enters only after pathwise comparison. Exact slack and tail sums are in the appendix.}
+\end{frame}
+\section{Question}
+% Manuscript: Section 1; merge model
+\begin{frame}{What does one merge do?}
+Neighboring links are ready at $a,b$.
+\[
+(a,b)\longmapsto \max(a,b),\qquad c=|a-b|.
+\]
+\begin{itemize}
+\item The earlier link waits for the later one.
+\item The new link keeps the later readiness time.
+\item Earliest means the smallest neighboring maximum.
+\end{itemize}
+For $n\geq1$, a complete history makes $n-1$ merges.
+\note{This is the source normalization of dephasing cost. Positions stay fixed: we cannot merge the two smallest numbers if they are not neighbors. Swaps are deterministic and instantaneous, with no memory cutoff.}
+\end{frame}
+% Manuscript: Section 2; example and Theorem 1
+\begin{frame}{One list, different costs}
+\[
+(1,2,4,3)\to(2,4,3)\to(2,4)\to(4)
+\]
+\[
+\text{Earliest order:}\quad 1+1+2=4.
+\]
+\[
+(1,2,4,3)\to(1,4,3)\to(1,4)\to(4)
+\]
+\[
+\text{Another order:}\quad 2+1+3=6.
+\]
+The initial pair readiness times are $2,4,4$.
+\note{At the second earliest step, both pair maxima equal four. The other tie choice also costs four. The lower row is a valid contraction history in the recurrence; arbitrary contraction orders need not themselves list events chronologically.}
+\end{frame}
+\section{Proof}
+% Manuscript: Section 2, Theorem 1 and potential equation
+\begin{frame}{An explicit optimum}
+\[
+P(x)=M(x)+\sum_{j=1}^{n-1}\max(x_j,x_{j+1})-\sum_{j=1}^n x_j,
+\]
+where $M(x)=\max_jx_j$.
+\begin{bookresult}{thm-main}
+For all $n\geq1$ and $x\in\mathbb R_{\geq0}^n$, $D^{\star}(x)=P(x)$. Every complete earliest history attains it, with arbitrary ties.
+\end{bookresult}
+Example: $P(1,2,4,3)=4+10-10=4$.
+\note{This is the optimum clause of the full real-time theorem. The appendix states its exact slack and optimality characterization. Interpret the potential as a ledger for remaining cost.}
+\end{frame}
+% Manuscript: Section 2, proof of Theorem 1
+\begin{frame}{Paid plus future stays four}
+\centering
+\begin{tabular}{c|r|r}
+List & Paid & $P$\\\hline
+$(1,2,4,3)$ & $0$ & $4$\\
+$(2,4,3)$ & $1$ & $3$\\
+$(2,4)$ & $2$ & $2$\\
+$(4)$ & $4$ & $0$
+\end{tabular}
+\bigskip
+
+Each step cost exactly matches the potential drop.
+\[
+\text{paid}+P=4.
+\]
+\note{A singleton has zero potential. To turn the ledger into a proof, we must show that paid plus future cannot decrease along any history.}
+\end{frame}
+% Manuscript: Section 2, one-step identity and slack
+\begin{frame}{Only the neighbors can add excess}
+Merge $a,b$ into $m=\max(a,b)$:
+\[
+|a-b|+P(T_i x)-P(x)=\delta_i(x)\geq0.
+\]
+A left neighbor $l$ contributes
+\[
+\max(l,m)-\max(l,a)\geq0.
+\]
+The right side is similar; missing endpoint terms are zero.
+
+Merging $(2,4)$ first adds $4-2=2$ on the left.
+\note{The global maximum is unchanged. The neighboring-maxima sum changes by $-m+\delta_i$, and the entries sum changes by $m-a-b$. Subtract and use $2m-a-b=|a-b|$. This proves an identity, not just a bound.}
+\end{frame}
+% Manuscript: Section 2, greedy equality and telescoping
+\begin{frame}{Earliest choices make the excess zero}
+Earliest readiness gives $m\leq\max(l,a)$, hence
+\[
+\max(l,m)=\max(l,a).
+\]
+The right side is the same. Thus an earliest step has $\delta_i=0$.
+\[
+C_H(x)-P(x)=\sum_{s=0}^{n-2}\delta_{i_s}(x^{(s)}).
+\]
+\begin{itemize}
+\item Every complete history costs at least $P$.
+\item Every earliest history costs exactly $P$, including ties.
+\end{itemize}
+\note{The sum is empty for $n=1$. Intermediate potentials cancel and the terminal potential is zero. A finite nonsingleton list always has an earliest pair; length drops by one, so a complete earliest run exists. Nonnegativity also gives the equality characterization.}
+\end{frame}
+% Manuscript: Section 2, non-greedy optimal example
+\begin{frame}{Optimal need not mean earliest}
+\[
+(1,2,4,3)\to(1,2,4)\to(2,4)\to(4).
+\]
+\[
+1+1+2=4.
+\]
+The first move is not earliest, but has zero slack.
+
+\begin{block}{The full criterion}
+A history is optimal if and only if every merge has zero slack.
+\end{block}
+Singletons and equal-time lists have zero cost.
+\note{This compares valid contraction histories in the recurrence. Earliest histories also have nondecreasing event times: new neighboring pairs contain the current merge time, and unchanged pairs are no earlier.}
+\end{frame}
+\section{Consequences}
+% Manuscript: Section 3, Corollary 2
+\begin{frame}{Compare each trial, then average}
+\begin{bookresult}{cor-attenuation}
+Any joint readiness law; complete policies on the same realization:
+\[
+C_{\mathrm{greedy}}(X)=P(X)\leq C_H(X).
+\]
+For every $\alpha\geq0$,
+\[
+\mathbb E e^{-\alpha C_{\mathrm{greedy}}(X)}
+\geq \mathbb E e^{-\alpha C_H(X)}.
+\]
+\end{bookresult}
+Factors lie in $[0,1]$; no finite mean cost is needed.
+\note{Policies and costs are measurable; competitors may use extra randomness. Fix all these choices, apply the deterministic theorem, then use monotonicity of $t\mapsto e^{-\alpha t}$ and of expectation. Integrable costs also give minimum mean cost. Independence and identical laws are unnecessary.}
+\end{frame}
+% Manuscript: Section 4, pinned natural-number statement
+\begin{frame}{The exact formal scope}
+\begin{bookresult}{thm-natural}
+For every finite natural-number list, each complete earliest history costs the Bellman optimum. This includes empty lists, singletons, zero times and all ties.
+\end{bookresult}
+\begin{itemize}
+\item Real domain, explicit slack and optimality iff: written proof in the note.
+\item Probability and expectation statements: written proof in the note.
+\end{itemize}
+\note{The natural-number formal theorem does not cover the full real-time theorem. Its source uses zero-based indices and natural-number lists. The matching book environment has exactly that scope. The sources chapter links the focused remaining formalization requests.}
+\end{frame}
+% Manuscript: Sections 1 and 3; source coverage
+\begin{frame}{Which problem is optimized?}
+\begin{itemize}
+\item Fix the same realized readiness vector.
+\item Swaps are deterministic, instantaneous and adjacent.
+\item Optimize accumulated dephasing in this recurrence.
+\end{itemize}
+
+Changing distribution, storage, swap success or the key-rate objective requires further analysis.
+
+\medskip
+Kamin et al.: Section IV D 1, Eq. (41); the related expectation question is in Section IV D 5.
+\note{Goodenough et al. express roughness plus endpoint waiting as $2P$. Roughness alone is not this objective; the factor two reflects the normalization.}
+\end{frame}
+% Manuscript: Bibliography; exact version
+\begin{frame}{References}
+\small
+Haobo Ma, Wenlin Zhang (2026). \emph{Earliest swapping for every chain length: Kamin et al. (2023), Section IV D 1, Eq. (41)}, v1.\\
+\href{https://doi.org/10.5281/zenodo.23904476}{doi:10.5281/zenodo.23904476}.
+\medskip
+
+L. Kamin, E. Shchukin, F. Schmidt, P. van Loock (2023). \emph{Exact rate analysis for quantum repeaters with imperfect memories and entanglement swapping as soon as possible}. PR Research 5, 023086.\\
+\href{https://doi.org/10.1103/PhysRevResearch.5.023086}{doi:10.1103/PhysRevResearch.5.023086}.
+\medskip
+
+K. Goodenough, T. Coopmans, D. Towsley (2025). \emph{On noise in swap ASAP repeater chains: exact analytics, distributions and tight approximations}. Quantum 9, 1744.\\
+\href{https://doi.org/10.22331/q-2025-05-15-1744}{doi:10.22331/q-2025-05-15-1744}.
+\note{The note is cited by its exact version DOI. Original authors and verified source initials are retained. The appendix gives exact slack and the geometric expectation calculation.}
+\end{frame}
+\appendix
+\section{Details}
+% Manuscript: Section 2, Theorem 1, slack equation
+\begin{frame}{Appendix: exact slack}
+Put $a=x_i,b=x_{i+1},m=\max(a,b)$, for $1\leq i<n$.
+\[
+\delta_i=L_i+R_i,
+\]
+\[
+L_i=\begin{cases}\max(x_{i-1},m)-\max(x_{i-1},a),&i>1,\\0,&i=1,\end{cases}
+\]
+\[
+R_i=\begin{cases}\max(m,x_{i+2})-\max(b,x_{i+2}),&i+1<n,\\0,&i+1=n.\end{cases}
+\]
+Both terms are nonnegative. Optimality iff every $\delta_i=0$.
+\note{This is the local excess formula in Theorem 1. An absent neighbor contributes zero; we do not introduce fictitious boundary readiness times.}
+\end{frame}
+% Manuscript: Section 3, Corollary 3
+\begin{frame}{Appendix: geometric mean cost}
+\begin{bookresult}{cor-mean}
+$n\geq1$; the $X_i$ are independent with
+$\Pr(X_i=k)=p(1-p)^{k-1}$, $k\geq1$, $0<p\leq1$.
+Put $q=1-p$ and
+\[
+A_n(p)=\sum_{j=1}^{n}\frac{(-1)^{j+1}\binom nj}{1-q^j},
+\]
+\[
+\mathbb E D^{\star}(X)=A_n(p)+\frac{n-2}{p}-\frac{n-1}{p(2-p)}.
+\]
+\end{bookresult}
+At $n=1$ or $p=1$ the answer is zero.
+\note{This is manuscript Corollary 3; theorem and corollaries share a counter. Linearity of expectation sums the neighboring maxima without requiring those maxima themselves to be independent.}
+\end{frame}
+% Manuscript: Section 3, proof of Corollary 3
+\begin{frame}{Appendix: tail probabilities}
+Independence gives $\Pr(M\leq k)=(1-q^k)^n$, $k\geq0$.
+\[
+\mathbb E M=\sum_{k=0}^{\infty}[1-(1-q^k)^n]=A_n(p).
+\]
+For two independent coordinates:
+\[
+\mathbb E\min(X_1,X_2)=\frac{1}{p(2-p)},
+\]
+\[
+\mathbb E\max(X_1,X_2)=\frac{2}{p}-\frac{1}{p(2-p)}.
+\]
+Substitute in $\mathbb E P=\mathbb E M+(n-1)\mathbb E\max(X_1,X_2)-n/p$.
+\note{Use $q^0=1$. Binomial expansion involves only $j=1,\ldots,n$, each series has ratio $q^j<1$, and the finite interchange is valid. Integrability follows from $M\leq\sum X_i$. For $n=1$ the pair term is absent.}
+\end{frame}
+% Manuscript: Section 4; exact formal evidence ledger
+\FormalVerification
+\end{document}

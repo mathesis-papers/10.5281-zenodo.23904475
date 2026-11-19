@@ -1,0 +1,55 @@
+{
+  "book": "kamin-shchukin-schmidt-van-loock-2023-swap-earliest-dephasing",
+  "pending_claims": [],
+  "results": {
+    "thm-main": {
+      "claim": "collected:kamin-shchukin-schmidt-van-loock-2023-swap-earliest-dephasing:1:s1",
+      "gids": [],
+      "comparison_verdict": "special case",
+      "compared_public_gid": "D5/S3/Quantum/Optimization/SwapEarliestDephasingOptimality.result",
+      "comparison_commit": "8a24ea4e79de962725aab9d9b49cc605fcc211d8",
+      "formalization_request": {
+        "label": "Theorem 1 — real-time potential and exact slack",
+        "url": "https://github.com/the-omega-institute/trureturing-requests/issues/183"
+      }
+    },
+    "thm-natural": {
+      "claim": "collected:kamin-shchukin-schmidt-van-loock-2023-swap-earliest-dephasing:1:s1",
+      "gids": [
+        "D5/S3/Quantum/Optimization/SwapEarliestDephasingOptimality.result"
+      ],
+      "comparison_verdict": "same",
+      "compared_public_gid": "D5/S3/Quantum/Optimization/SwapEarliestDephasingOptimality.result",
+      "comparison_commit": "8a24ea4e79de962725aab9d9b49cc605fcc211d8"
+    },
+    "cor-attenuation": {
+      "claim": "collected:kamin-shchukin-schmidt-van-loock-2023-swap-earliest-dephasing:1:s2",
+      "gids": [],
+      "comparison_verdict": "none",
+      "compared_public_gid": null,
+      "comparison_commit": "8a24ea4e79de962725aab9d9b49cc605fcc211d8",
+      "formalization_request": {
+        "label": "Corollary 2 — expected exponential attenuation",
+        "url": "https://github.com/the-omega-institute/trureturing-requests/issues/184"
+      }
+    },
+    "cor-mean": {
+      "claim": "collected:kamin-shchukin-schmidt-van-loock-2023-swap-earliest-dephasing:1:s3",
+      "gids": [],
+      "comparison_verdict": "none",
+      "compared_public_gid": null,
+      "comparison_commit": "8a24ea4e79de962725aab9d9b49cc605fcc211d8",
+      "formalization_request": {
+        "label": "Corollary 3 — geometric mean cost",
+        "url": "https://github.com/the-omega-institute/trureturing-requests/issues/185"
+      }
+    }
+  },
+  "stage": "complete",
+  "titles": {
+    "en": "Earliest swapping for every chain length: Kamin et al. (2023), Section IV D 1, Eq. (41)",
+    "zh": "Earliest swapping for every chain length: Kamin et al. (2023), Section IV D 1, Eq. (41)"
+  },
+  "version": 1,
+  "work": "kamin-shchukin-schmidt-van-loock-2023-swap-earliest-dephasing"
+}

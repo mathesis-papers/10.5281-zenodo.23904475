@@ -1,0 +1,237 @@
+\documentclass{beamer}
+\input{tbook-deck}
+\title{最早交换为何最优}
+\author{Haobo Ma\inst{1} \and Wenlin Zhang\inst{1,2}}
+\institute{\inst{1}Chrono AI, Singapore\and\inst{2}National University of Singapore, Singapore}
+\date{2026-11-15}
+\begin{document}
+% Manuscript: Section 1; title and source attribution
+\begin{frame}
+\titlepage
+\note{报告解释 Haobo Ma 与 Wenlin Zhang 的第 1 版短文。原始问题来自 Kamin 等人 2023 年第四节 D 1 的式 (41)。对象是固定准备时刻、确定且瞬时的相邻交换。}
+\end{frame}
+% Manuscript: Sections 1–3; argument order
+\begin{frame}{路线}
+\tableofcontents
+\note{先用数字解释等待，再给出最优值和一步恒等式。概率结论来自逐实现比较。附录保留精确松弛量和尾和计算。}
+\end{frame}
+\section{问题}
+% Manuscript: Section 1; merge model
+\begin{frame}{一对相邻段怎样合并？}
+准备时刻为 $a,b$，两段相邻。
+\[
+(a,b)\longmapsto \max(a,b),\qquad c=|a-b|.
+\]
+\begin{itemize}
+\item 较早的一段等待较晚的一段。
+\item 新段保留较晚的准备时刻。
+\item 最早规则最小化相邻对的最大值。
+\end{itemize}
+链长 $n\geq1$；完整历史恰有 $n-1$ 次合并。
+\note{这些式子是原文的退相干成本归一化。位置固定，不能把不相邻的两个最小数合并。模型不包括失败交换、记忆截止或耗时交换。}
+\end{frame}
+% Manuscript: Section 2; example and Theorem 1
+\begin{frame}{同一串数字，成本可以不同}
+\[
+(1,2,4,3)\to(2,4,3)\to(2,4)\to(4)
+\]
+\[
+\text{最早顺序：}\quad 1+1+2=4.
+\]
+\[
+(1,2,4,3)\to(1,4,3)\to(1,4)\to(4)
+\]
+\[
+\text{另一顺序：}\quad 2+1+3=6.
+\]
+第一步可合并时刻为 $2,4,4$。
+\note{第二步最早时刻并列，换一种并列选择仍得成本四。下方顺序只是递推中合法的合并顺序，不要求所有这样的顺序都按物理时刻先后书写。}
+\end{frame}
+\section{证明}
+% Manuscript: Section 2, Theorem 1 and potential equation
+\begin{frame}{最优值是一条显式公式}
+\[
+P(x)=M(x)+\sum_{j=1}^{n-1}\max(x_j,x_{j+1})-\sum_{j=1}^n x_j,
+\]
+其中 $M(x)=\max_jx_j$。
+\begin{bookresult}{thm-main}
+对所有 $n\geq1$、$x\in\mathbb R_{\geq0}^n$，
+$D^{\star}(x)=P(x)$；每个完整最早历史都达到它，任意并列选择均可。
+\end{bookresult}
+例子：$P(1,2,4,3)=4+10-10=4$。
+\note{这页陈述完整实数定理的最优值部分；附录给出同一定理的精确松弛量与最优充要条件。势函数起初可理解为未来成本的账本。}
+\end{frame}
+% Manuscript: Section 2, proof of Theorem 1
+\begin{frame}{已付加未来：最早顺序保持四}
+\centering
+\begin{tabular}{c|r|r}
+列表 & 已付 & $P$\\\hline
+$(1,2,4,3)$ & $0$ & $4$\\
+$(2,4,3)$ & $1$ & $3$\\
+$(2,4)$ & $2$ & $2$\\
+$(4)$ & $4$ & $0$
+\end{tabular}
+\bigskip
+
+每步：本步成本恰好抵消势函数下降。
+\[
+\text{已付}+P=4.
+\]
+\note{单元素的势函数为零。若证明已付加未来在任意顺序都不能下降，这个表就不只是例子，而是一般证明的模型。}
+\end{frame}
+% Manuscript: Section 2, one-step identity and slack
+\begin{frame}{一步只影响左右邻居}
+合并 $a,b$ 为 $m=\max(a,b)$：
+\[
+|a-b|+P(T_i x)-P(x)=\delta_i(x)\geq0.
+\]
+左邻居 $l$ 的贡献：
+\[
+\max(l,m)-\max(l,a)\geq0.
+\]
+右邻居同理；端点缺失的项为零。
+
+例子中先合并 $(2,4)$：左侧增加 $4-2=2$。
+\note{全局最大值保持。相邻最大值之和改变量为 $-m+\delta_i$，各项之和改变量为 $m-a-b$，相减后使用 $2m-a-b=|a-b|$。这给出等式而不只是下界。}
+\end{frame}
+% Manuscript: Section 2, greedy equality and telescoping
+\begin{frame}{最早选择使每一项为零}
+最早性给出 $m\leq\max(l,a)$，所以
+\[
+\max(l,m)=\max(l,a).
+\]
+右邻居同理。故最早步的 $\delta_i=0$。
+\[
+C_H(x)-P(x)=\sum_{s=0}^{n-2}\delta_{i_s}(x^{(s)}).
+\]
+\begin{itemize}
+\item 任意完整历史成本至少为 $P$。
+\item 最早历史恰好等于 $P$；并列无例外。
+\end{itemize}
+\note{求和范围在 $n=1$ 时为空。中间势函数抵消，终端为零。有限列表存在最早对，每步长度减一，故完整最早历史存在。等号条件使用所有松弛量非负。}
+\end{frame}
+% Manuscript: Section 2, non-greedy optimal example
+\begin{frame}{最早不是最优的必要条件}
+\[
+(1,2,4,3)\to(1,2,4)\to(2,4)\to(4).
+\]
+\[
+1+1+2=4.
+\]
+第一步不最早，但松弛量为零。
+
+\begin{block}{完整判据}
+历史最优，当且仅当每一步的松弛量都为零。
+\end{block}
+单元素、全部相同时刻均有零成本。
+\note{这个例子属于递推中合法合并顺序的比较。最早历史还具有时刻不倒退的性质，因为新相邻对含有当前最大时刻，未动相邻对也不早于它。}
+\end{frame}
+\section{意义}
+% Manuscript: Section 3, Corollary 2
+\begin{frame}{先逐次试验比较，再求平均}
+\begin{bookresult}{cor-attenuation}
+任意联合准备时刻分布，同一实现上的完整策略：
+\[
+C_{\mathrm{greedy}}(X)=P(X)\leq C_H(X).
+\]
+对每个 $\alpha\geq0$，
+\[
+\mathbb E e^{-\alpha C_{\mathrm{greedy}}(X)}
+\geq \mathbb E e^{-\alpha C_H(X)}.
+\]
+\end{bookresult}
+指数因子在 $[0,1]$；不要求成本均值有限。
+\note{假定策略与成本可测，允许竞争策略额外随机性。固定这些随机选择后应用定理。函数 $t\mapsto e^{-\alpha t}$ 单调不增，再用期望单调性。成本可积时也得到平均成本最小；不要求独立或同分布。}
+\end{frame}
+% Manuscript: Section 4, pinned natural-number statement
+\begin{frame}{精确的形式化范围}
+\begin{bookresult}{thm-natural}
+每个有限自然数列表上的完整最早历史，其成本等于 Bellman 最优值。包含空列表、单元素、零时刻和所有并列选择。
+\end{bookresult}
+\begin{itemize}
+\item 实数域、显式松弛量与最优充要条件：原稿书面证明。
+\item 概率和期望结论：原稿书面证明。
+\end{itemize}
+\note{不要把自然数结论的形式证据扩成完整实数定理。形式源码使用零基索引和 List ℕ；书中自然数环境与它陈述相同。相关形式化请求链接在书的来源章节。}
+\end{frame}
+% Manuscript: Sections 1 and 3; source coverage
+\begin{frame}{它优化的是哪一个问题？}
+\begin{itemize}
+\item 固定同一准备时刻向量。
+\item 确定成功、瞬时、相邻交换。
+\item 目标为此递推中的累计退相干成本。
+\end{itemize}
+
+改变分发方案、存储规则、交换成功概率或密钥率目标，必须重新分析。
+
+\medskip
+Kamin 等人的问题：第四节 D 1、式 (41)；相关期望问题：第四节 D 5。
+\note{Goodenough 等人给出的粗糙度加端点等待项等于 $2P$，不能只拿粗糙度当本模型目标。这一因子反映归一化差别。}
+\end{frame}
+% Manuscript: Bibliography; exact version
+\begin{frame}{文献}
+\small
+Haobo Ma, Wenlin Zhang (2026). \emph{Earliest swapping for every chain length: Kamin et al. (2023), Section IV D 1, Eq. (41)}, v1.\\
+\href{https://doi.org/10.5281/zenodo.23904476}{doi:10.5281/zenodo.23904476}.
+\medskip
+
+L. Kamin, E. Shchukin, F. Schmidt, P. van Loock (2023). \emph{Exact rate analysis for quantum repeaters with imperfect memories and entanglement swapping as soon as possible}. PR Research 5, 023086.\\
+\href{https://doi.org/10.1103/PhysRevResearch.5.023086}{doi:10.1103/PhysRevResearch.5.023086}.
+\medskip
+
+K. Goodenough, T. Coopmans, D. Towsley (2025). \emph{On noise in swap ASAP repeater chains: exact analytics, distributions and tight approximations}. Quantum 9, 1744.\\
+\href{https://doi.org/10.22331/q-2025-05-15-1744}{doi:10.22331/q-2025-05-15-1744}.
+\note{使用本文第 1 版 DOI，保留原文作者姓名和已核实的姓名缩写。下面附录补上精确松弛量与几何分布均值。}
+\end{frame}
+\appendix
+\section{补充}
+% Manuscript: Section 2, Theorem 1, slack equation
+\begin{frame}{附录：精确松弛量}
+令 $a=x_i,b=x_{i+1},m=\max(a,b)$，$1\leq i<n$。
+\[
+\delta_i=L_i+R_i,
+\]
+\[
+L_i=\begin{cases}\max(x_{i-1},m)-\max(x_{i-1},a),&i>1,\\0,&i=1,\end{cases}
+\]
+\[
+R_i=\begin{cases}\max(m,x_{i+2})-\max(b,x_{i+2}),&i+1<n,\\0,&i+1=n.\end{cases}
+\]
+两项都非负。最优当且仅当每步 $\delta_i=0$。
+\note{这是 Theorem 1 的完整局部误差表达式。端点没有邻居时，对应贡献是零；不引入虚构边界时刻。}
+\end{frame}
+% Manuscript: Section 3, Corollary 3
+\begin{frame}{附录：几何分布均值}
+\begin{bookresult}{cor-mean}
+$n\geq1$；$X_i$ 独立同分布，
+$\Pr(X_i=k)=p(1-p)^{k-1}$，$k\geq1$、$0<p\leq1$。
+令 $q=1-p$，
+\[
+A_n(p)=\sum_{j=1}^{n}\frac{(-1)^{j+1}\binom nj}{1-q^j},
+\]
+\[
+\mathbb E D^{\star}(X)=A_n(p)+\frac{n-2}{p}-\frac{n-1}{p(2-p)}.
+\]
+\end{bookresult}
+$n=1$ 或 $p=1$ 时结果为零。
+\note{这是原稿 Corollary 3，不是 Corollary 2；原稿定理与推论共用编号。公式对相邻项分布相同使用线性期望，不要求这些相邻最大值互相独立。}
+\end{frame}
+% Manuscript: Section 3, proof of Corollary 3
+\begin{frame}{附录：尾概率计算}
+独立性给出 $\Pr(M\leq k)=(1-q^k)^n$，$k\geq0$。
+\[
+\mathbb E M=\sum_{k=0}^{\infty}[1-(1-q^k)^n]=A_n(p).
+\]
+对两个独立坐标：
+\[
+\mathbb E\min(X_1,X_2)=\frac{1}{p(2-p)},
+\]
+\[
+\mathbb E\max(X_1,X_2)=\frac{2}{p}-\frac{1}{p(2-p)}.
+\]
+代入 $\mathbb E P=\mathbb E M+(n-1)\mathbb E\max(X_1,X_2)-n/p$。
+\note{约定 $q^0=1$。二项式展开是有限的 $j=1,\ldots,n$ 求和，所有级数的公比 $q^j<1$，所以换序合法。可积性由 $M\leq\sum X_i$ 保证；$n=1$ 时忽略双坐标项。}
+\end{frame}
+% Manuscript: Section 4; exact formal evidence ledger
+\FormalVerification
+\end{document}

@@ -1,0 +1,14 @@
+[site]
+repo = "mathesis-papers/10.5281-zenodo.23904475"
+base_url = "https://papers.trureturing.org/10.5281-zenodo.23904475/"
+post_build = ["python3", "-c", "from pathlib import Path\nimport runpy\nscript = Path(\"docs/layer-mathesis/scripts/site.py\")\nif script.is_file():\n    runpy.run_path(str(script), run_name=\"__main__\")\nelse:\n    print(\"Mathesis post-build skipped: layer script is absent from repository being built\")\n"]
+languages = ["zh", "en"]
+[site.title]
+zh = "Earliest swapping for every chain length: Kamin et al. (2023), Section IV D 1, Eq. (41)"
+en = "Earliest swapping for every chain length: Kamin et al. (2023), Section IV D 1, Eq. (41)"
+[trureturing]
+repo = "the-omega-institute/trureturing"
+branch = "dev"
+[books]
+order = ["kamin-shchukin-schmidt-van-loock-2023-swap-earliest-dephasing"]
+hide = []

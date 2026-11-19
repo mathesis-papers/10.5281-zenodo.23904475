@@ -1,0 +1,29 @@
+{
+  "duration": "2:57",
+  "id": "001-earliest-swapping",
+  "lean": [
+    "D5/S3/Quantum/Optimization/SwapEarliestDephasingOptimality.result"
+  ],
+  "narration": {
+    "engine": "Kokoro-82M v1.0 (onnx)",
+    "language": "en",
+    "voice": "af_heart"
+  },
+  "outputs": {
+    "cover": "kamin-shchukin-schmidt-van-loock-2023-swap-earliest-dephasing_001_cover.jpg",
+    "narrated_720p": "kamin-shchukin-schmidt-van-loock-2023-swap-earliest-dephasing_001_720p_narrated.mp4"
+  },
+  "publication_basis": "pinned",
+  "released": "2026-11-15",
+  "resolution": "1280x720@30",
+  "style": "trureturing cyberpunk · deterministic canvas",
+  "subject": "https://doi.org/10.5281/zenodo.23904476",
+  "subtitles": [
+    "zh",
+    "en"
+  ],
+  "summary": "A four-link example explains earliest swapping, the potential ledger, exact excess cost and pathwise retention, with the precise natural-number formal scope.",
+  "summary_zh": "用四段链解释最早交换、势函数账本、精确额外成本与逐实现保留因子，并说明自然数形式结论的精确范围。",
+  "title": "Earliest swapping: no wasted cost",
+  "title_zh": "最早交换：一步也不浪费"
+}

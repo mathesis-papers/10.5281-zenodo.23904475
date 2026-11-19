@@ -1,0 +1,208 @@
+{
+  "voice": "af_heart",
+  "speed": 0.94,
+  "say": {
+    "dephasing": "dee phasing",
+    "Kamin": "Kah min",
+    "Lean": "Leen"
+  },
+  "music": {
+    "bpm": 80,
+    "progression": "a-minor"
+  },
+  "scenes": [
+    {
+      "id": "model",
+      "name": "WAITING",
+      "lead": 0.8,
+      "tail": 1.0,
+      "music": [
+        0.45,
+        0.15,
+        0.12,
+        0,
+        0
+      ],
+      "lines": [
+        [
+          "An early quantum link must wait for its neighbor. Waiting damages stored information.",
+          "先准备好的量子链路必须等待邻居，等待会损耗存储的信息。"
+        ],
+        [
+          "Neighbors ready at one and two merge at time two. They pay one and become a single link ready at two.",
+          "相邻两段在一和二时准备好，就在二时合并，成本为一，新段的准备时刻为二。"
+        ],
+        [
+          "With fixed readiness and deterministic instantaneous swaps, the earliest neighboring pair minimizes total cost. Why?",
+          "固定准备时刻、确定且瞬时交换时，总选最早的相邻一对会使总成本最小。为什么？"
+        ]
+      ]
+    },
+    {
+      "id": "orders",
+      "name": "FOUR LINKS",
+      "lead": 0.8,
+      "tail": 1.0,
+      "music": [
+        0.45,
+        0.15,
+        0.12,
+        0,
+        0
+      ],
+      "lines": [
+        [
+          "Take one, two, four, three. The neighboring pairs can merge at times two, four, and four.",
+          "看一、二、四、三；相邻对最早在二、四、四时合并。"
+        ],
+        [
+          "The earliest order pays one, one, two: total four. Either tied earliest choice is allowed.",
+          "最早顺序付一、一、二，总计四。并列时的两种最早选择都允许。"
+        ],
+        [
+          "Merging the middle pair first can cost two, one, three: total six. Why the extra two?",
+          "先合并中间一对可付二、一、三，总计六。多出来的二从何而来？"
+        ]
+      ]
+    },
+    {
+      "id": "ledger",
+      "name": "THE POTENTIAL",
+      "lead": 0.8,
+      "tail": 1.0,
+      "music": [
+        0.45,
+        0.15,
+        0.12,
+        0,
+        0
+      ],
+      "lines": [
+        [
+          "Define the potential: largest readiness time, plus neighboring maxima, minus the sum of times.",
+          "定义势函数：最大准备时刻，加上相邻对最大值之和，再减去准备时刻之和。"
+        ],
+        [
+          "Here it is four plus ten minus ten: four. Along the earliest order, paid cost plus potential stays four.",
+          "本例为四加十减十，等于四。沿最早顺序，已付加势函数始终为四。"
+        ],
+        [
+          "The final potential is zero. The worse first move pays two but leaves potential four, so the ledger jumps to six.",
+          "最终势函数为零。较差的第一步付二，却留下势函数四，使总账跳到六。"
+        ]
+      ]
+    },
+    {
+      "id": "neighbors",
+      "name": "LOCAL EXCESS",
+      "lead": 0.8,
+      "tail": 1.0,
+      "music": [
+        0.45,
+        0.15,
+        0.12,
+        0,
+        0
+      ],
+      "lines": [
+        [
+          "Merging a pair into its maximum affects only the immediately neighboring maxima.",
+          "一对合并为其最大值，只会影响紧邻它的左右最大值。"
+        ],
+        [
+          "The left increase is the new maximum minus the old one: nonnegative, because the merged time never decreases.",
+          "左侧增加量为新的相邻最大值减去旧值。合并时刻不会变小，故增加量非负。"
+        ],
+        [
+          "An earliest merge is no later than that old neighboring maximum, so the increase is zero. The right side works identically, including ties.",
+          "最早合并时刻不超过旧的相邻最大值，所以增加量为零。右侧同理，并列也成立。"
+        ],
+        [
+          "Step cost plus new potential equals old potential plus nonnegative slack. Earliest steps have zero slack.",
+          "本步成本加新势函数，等于旧势函数加非负松弛量。最早步的松弛量为零。"
+        ]
+      ]
+    },
+    {
+      "id": "sum",
+      "name": "CANCELLATION",
+      "lead": 0.8,
+      "tail": 1.0,
+      "music": [
+        0.45,
+        0.15,
+        0.12,
+        0,
+        0
+      ],
+      "lines": [
+        [
+          "Add the step identities. Intermediate potentials cancel. Total cost equals initial potential plus all slacks.",
+          "把逐步恒等式相加，中间势函数抵消。总成本等于初始势函数加全部松弛量。"
+        ],
+        [
+          "Every order costs at least the potential. Earliest orders attain it. Optimality means every slack is zero.",
+          "每个顺序成本至少为势函数；最早顺序达到它。最优等价于所有松弛量为零。"
+        ],
+        [
+          "Earliest is sufficient, not necessary. Merging the last pair first also allows a total cost of four.",
+          "最早是充分条件，却非必要。本例先合并最后一对，也能得到总成本四。"
+        ]
+      ]
+    },
+    {
+      "id": "random",
+      "name": "EACH REALIZATION",
+      "lead": 0.8,
+      "tail": 1.0,
+      "music": [
+        0.45,
+        0.15,
+        0.12,
+        0,
+        0
+      ],
+      "lines": [
+        [
+          "Random readiness times can be correlated. Fix one realization: earliest still beats or ties every complete competing history.",
+          "随机准备时刻可以相关。固定一次实现，最早成本仍不大于每个完整竞争历史。"
+        ],
+        [
+          "For nonnegative alpha, smaller cost means greater exponential retention. Compare each realization, then average. Independence is unnecessary.",
+          "阿尔法非负时，成本越小，指数保留因子越大。逐实现比较后求平均，无需独立性。"
+        ],
+        [
+          "This fixes the readiness vector and swap model. Other distribution schemes or key rates need further analysis.",
+          "这里固定准备向量和交换模型；其他分发方案或密钥率需要另行分析。"
+        ]
+      ]
+    },
+    {
+      "id": "scope",
+      "name": "SOURCES AND SCOPE",
+      "lead": 0.8,
+      "tail": 1.0,
+      "music": [
+        0.45,
+        0.15,
+        0.12,
+        0,
+        0
+      ],
+      "lines": [
+        [
+          "For natural-number times, the public Lean theorem checks every complete earliest history against the Bellman optimum, allowing all ties.",
+          "对自然数时刻，公开 Lean 定理核验每个完整最早历史达到贝尔曼最优值，允许所有并列。"
+        ],
+        [
+          "Real times, exact slack and probability have written proofs by Haobo Ma and Wenlin Zhang.",
+          "实数时刻、精确松弛量与概率结论由 Haobo Ma 和 Wenlin Zhang 给出书面证明。"
+        ],
+        [
+          "Kamin and coauthors asked the question in twenty twenty-three. The mechanism: earliest merges create no excess, so nothing is wasted.",
+          "Kamin 等人在二〇二三年提出问题。机制是：最早合并不产生额外成本，所以没有浪费。"
+        ]
+      ]
+    }
+  ]
+}

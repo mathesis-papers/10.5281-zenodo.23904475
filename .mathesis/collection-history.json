@@ -1,0 +1,24 @@
+{
+  "schema": "mathesis.collection-history.v1",
+  "sha256": {
+    "versions/v1/.mathesis/generated.json": "750f945127a9dabd0151005bb5a93a6dff712f2a2cc34f373c6512b9cfc031af",
+    "versions/v1/CHANGELOG.md": "7243b2f50e836193bc9701cc3988c8b9ad7acdb94376be34f732de000890281e",
+    "versions/v1/CITATION.cff": "d891b42e2af59b309c99ed3acc5542a6268680129cd24976cad3ae9896a29ab1",
+    "versions/v1/CONTRIBUTING.md": "fafd66e63160b2a88f433af56d2af2b0f7bf6ed2fd417d46b54446ce07c627ff",
+    "versions/v1/LICENSES/CC-BY-4.0.txt": "58230517b7895aa219ff46a6ed63e67057a1582fb9ea054b16728a8c13525650",
+    "versions/v1/README.md": "309b72023bc411803ed6e151e20204d35a541db929e50f40ebe72a606540ca61",
+    "versions/v1/formalization/nodes.json": "bfe2bb35b0e143eb5d4bcd0f779f170f2a42d201b031c13ac57cdebfd2ac31e9",
+    "versions/v1/manuscript/earliest-swapping-note-2026-11-02/LICENSE.txt": "e0967ce0dce3d746b90b10feca5c6fb83006c2198cb8f44b1d25a39cc9d46767",
+    "versions/v1/manuscript/earliest-swapping-note-2026-11-02/README.md": "d87a557c2a5494d4bdf9d3d1537233d1226ca76f3ace874795367d17f909b965",
+    "versions/v1/manuscript/earliest-swapping-note-2026-11-02/SHA256SUMS": "c784d5e6b9af124345282f0e238acd0ff80dea54a2ead3db8f71982c07c62016",
+    "versions/v1/manuscript/earliest-swapping-note-2026-11-02/metadata.json": "2fe9bff17847d9e8b42e1aed6aa36ad8e5f60a17cf51ab972f18418c7c737a08",
+    "versions/v1/manuscript/earliest-swapping-note-2026-11-02/note.tex": "1a9f44df0f8aba778d00943cb88ca150104354bd302b5fc306e72e772a950c79",
+    "versions/v1/manuscript/earliest-swapping-note-2026-11-02/verification.json": "fb796061a4717691d5a4a57db1e8054940b3732c685ca515e28b4dbecd362d69",
+    "versions/v1/manuscript/earliest-swapping-note-2026-11-02/verify.py": "98706dbaa75c21c0b44a2902239bba91834113c55aef4fa5df471baca58d8c9c",
+    "versions/v1/paper.json": "5f195e683dbd7b817144a2d6e37165e626192fff1c94e9945467562cb031736e",
+    "versions/v1/paper.pdf": "ac14a9517f2b9f0aedce316c2b125eee2757a27ca32bdfca41490393c664008b",
+    "versions/v1/source.archive": "f2c7ce85df347bfe8ef46202b170129c3baca0698e3ca493ec4e4879eca7e1f8"
+  },
+  "source_commit": "cae922d818fb51bed77806a1ae4d0b9f32cfe467",
+  "work": "kamin-shchukin-schmidt-van-loock-2023-swap-earliest-dephasing"
+}

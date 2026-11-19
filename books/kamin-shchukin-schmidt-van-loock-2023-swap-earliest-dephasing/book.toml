@@ -1,0 +1,18 @@
+[book]
+code = "EARLIEST SWAPPING"
+version = "1"
+authors = ["Haobo Ma", "Wenlin Zhang"]
+license = "CC-BY-4.0"
+editions = ["zh", "en"]
+date = "2026-11-05"
+[book.title]
+zh = "Earliest swapping for every chain length: Kamin et al. (2023), Section IV D 1, Eq. (41)"
+en = "Earliest swapping for every chain length: Kamin et al. (2023), Section IV D 1, Eq. (41)"
+[outputs]
+html = true
+pdf = ["academic"]
+epub = true
+[mathesis]
+work = "kamin-shchukin-schmidt-van-loock-2023-swap-earliest-dephasing"
+version = 1
+source_title = "Earliest swapping for every chain length: Kamin et al. (2023), Section IV D 1, Eq. (41)"
