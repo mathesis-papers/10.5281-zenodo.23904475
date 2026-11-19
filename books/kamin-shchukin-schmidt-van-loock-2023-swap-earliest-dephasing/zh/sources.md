@@ -1,5 +1,3 @@
-<style>pre:has(> code[class*="typst"]) { display: none; }</style>
-
 # 来源与继续探索
 
 ## 本文与原始问题
@@ -24,6 +22,10 @@
 
 一个适合先用纸笔探索的问题是：对 $(1,2,4,3)$ 的每个可能第一步，算出左右松弛量。哪些第一步虽然不是最早，却仍能接上最优历史？[精确结论](statements.md)中的充要条件可以检查你的答案。
 
+<section hidden="hidden">
+
 ```{=typst}
 #pagebreak()
 ```
+
+</section>
