@@ -2,16 +2,16 @@
   "files": {
     "pdf": {
       "bytes": 70185,
-      "matches_public": null,
+      "matches_public": true,
       "path": "paper.pdf",
-      "public_sha256": null,
+      "public_sha256": "ac14a9517f2b9f0aedce316c2b125eee2757a27ca32bdfca41490393c664008b",
       "sha256": "ac14a9517f2b9f0aedce316c2b125eee2757a27ca32bdfca41490393c664008b"
     },
     "source": {
       "bytes": 12096,
-      "matches_public": null,
+      "matches_public": true,
       "path": "source.archive",
-      "public_sha256": null,
+      "public_sha256": "f2c7ce85df347bfe8ef46202b170129c3baca0698e3ca493ec4e4879eca7e1f8",
       "sha256": "f2c7ce85df347bfe8ef46202b170129c3baca0698e3ca493ec4e4879eca7e1f8"
     }
   },
@@ -38,6 +38,8 @@
     "license": "CC-BY-4.0",
     "msc": [],
     "pdf": {
+      "bytes": 70185,
+      "sha256": "ac14a9517f2b9f0aedce316c2b125eee2757a27ca32bdfca41490393c664008b",
       "url": "/api/v1/collected-papers/kamin-shchukin-schmidt-van-loock-2023-swap-earliest-dephasing/files/pdf?version=1"
     },
     "previous_version": null,
@@ -46,6 +48,8 @@
     "record": "kamin-shchukin-schmidt-van-loock-2023-swap-earliest-dephasing",
     "repository_name": "10.5281-zenodo.23904475",
     "source": {
+      "bytes": 12096,
+      "sha256": "f2c7ce85df347bfe8ef46202b170129c3baca0698e3ca493ec4e4879eca7e1f8",
       "url": "/api/v1/collected-papers/kamin-shchukin-schmidt-van-loock-2023-swap-earliest-dephasing/files/source?version=1"
     },
     "title": "Earliest swapping for every chain length: Kamin et al. (2023), Section IV D 1, Eq. (41)",

@@ -1,7 +1,7 @@
 {
   "git_blobs": {
     ".github/workflows/pages.yml": "7879724db1358178aad7e9bed326a44be44f5a6a",
-    ".mathesis/generated.json": "f4ea55530c3eefab0976da780ee857a178154dc5",
+    ".mathesis/generated.json": "a1773e7355c83cbba1f7bc11a15b28f342898405",
     "CHANGELOG.md": "c3af12288bcd505483af5ca9be409f7be9f7d611",
     "CITATION.cff": "7cb3b7ff640f075ef1c77d4b18264851d17eae68",
     "CONTRIBUTING.md": "ea69168fc2cb506b57b00de1ef588aaf011aa3da",
@@ -15,7 +15,7 @@
     "manuscript/earliest-swapping-note-2026-11-02/note.tex": "ce999ae6515a84f51bee78af962d9d79ee56d831",
     "manuscript/earliest-swapping-note-2026-11-02/verification.json": "af98cb86177fe49ae39e7542fc7a6a675e09a87c",
     "manuscript/earliest-swapping-note-2026-11-02/verify.py": "d3c633965acfa259553828ce74fbaf0d6fa9632e",
-    "paper.json": "f53283726c4f5ed75a7c5bf832648c77439cf82b",
+    "paper.json": "626c4268add07c079c3e671b699da87aedbc0028",
     "paper.pdf": "e3cbce655fc9b1c0884d714bef97a850abce9c7a",
     "site/en/index.html": "5e0916cf258674b06065f3962168b6ff68b10c20",
     "site/index.html": "5d7e5aa9a707b66209c8c8bfe9f1b596c199fb40",
@@ -43,7 +43,7 @@
   "schema": "mathesis.paper-collection.v1",
   "sha256": {
     ".github/workflows/pages.yml": "f15d983dcb8f324ffdedb50b05f7380e11fda8723d49b5c8f10ef0f414612372",
-    ".mathesis/generated.json": "a25dcd74ff7399528e3141d47e10c326b8e2b4b63ee8b659849afdb84994673f",
+    ".mathesis/generated.json": "a0c0a1dca8ecb8866764a3ef20e689fc630b139f4c662d4b42d62c8299a80303",
     "CHANGELOG.md": "7243b2f50e836193bc9701cc3988c8b9ad7acdb94376be34f732de000890281e",
     "CITATION.cff": "d891b42e2af59b309c99ed3acc5542a6268680129cd24976cad3ae9896a29ab1",
     "CONTRIBUTING.md": "fafd66e63160b2a88f433af56d2af2b0f7bf6ed2fd417d46b54446ce07c627ff",
@@ -57,7 +57,7 @@
     "manuscript/earliest-swapping-note-2026-11-02/note.tex": "1a9f44df0f8aba778d00943cb88ca150104354bd302b5fc306e72e772a950c79",
     "manuscript/earliest-swapping-note-2026-11-02/verification.json": "fb796061a4717691d5a4a57db1e8054940b3732c685ca515e28b4dbecd362d69",
     "manuscript/earliest-swapping-note-2026-11-02/verify.py": "98706dbaa75c21c0b44a2902239bba91834113c55aef4fa5df471baca58d8c9c",
-    "paper.json": "9fd363d9bd5aba84a893e6589f6751617fe4e4fbb655ceb426714bbe9905ec61",
+    "paper.json": "a6669a6e873c90eab8108d91cd44512cbb23e9f35da2a40907a41150eb87e311",
     "paper.pdf": "ac14a9517f2b9f0aedce316c2b125eee2757a27ca32bdfca41490393c664008b",
     "site/en/index.html": "a1086516b45d902bd9a42d36c5bd86dc8bcc718997269c62de777ec05d3a48bd",
     "site/index.html": "e0d97147a420729b1d07400aba3954a31c977bf9acaa9ba2899f9b5bb88e6431",
